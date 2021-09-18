@@ -3,19 +3,15 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { CommonActions } from '@react-navigation/native';
 import { Alert } from 'react-native'
 
-import { VENUES, EVENTS, CITIES } from './types';
+import { WORD } from './types';
+import data from './data'
 let url="https://sandbox.musement.com/api/v3/"
 
 
-export const ListingWords = () => {
+export const getWord = () => {
     return async(dispatch) => {
-
-    await axios.get(url+'venues',{}).then(async function (response) {
-      dispatch({type: VENUES, venues:response.data})    
- 
-    }).catch(function (error) {
-    console.log(error.response)
-    console.log(error)
-  })
+    let random = Math.floor(Math.random()  * 6) ;
+    console.log(random)
+    dispatch({type: WORD, word:data.dictionary[random]})    
   }
   }

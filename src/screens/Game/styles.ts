@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import { normalize } from '../normalize'
+import colors from '@palette';
 
 const w = (Dimensions.get('window').width);
 const h = (Dimensions.get('window').height);
@@ -7,7 +8,7 @@ const h = (Dimensions.get('window').height);
 export const styles=StyleSheet.create({
     container : {
         flex: 1,
-        backgroundColor:'#F8F0E3',
+        backgroundColor:colors.primary,
     },
     img:{
         width:w*0.4,
@@ -21,12 +22,12 @@ export const styles=StyleSheet.create({
         borderRadius:10,
         flexDirection:'row',
         flexWrap:'wrap',
-        marginTop:h*0.03,
+        marginTop:h*0.01,
         justifyContent:'center',
         padding:w*0.01,
     },
     card:{
-        backgroundColor:'#F8F0E3',
+        backgroundColor:colors.primary,
         width:w*0.15,
         height:w*0.15,
         alignItems:'center',
@@ -39,8 +40,8 @@ export const styles=StyleSheet.create({
         },
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
-        
         elevation: 4,
+        borderRadius:5
     },
     selectedCard:{
         backgroundColor:'#D3D3D3',
@@ -49,19 +50,31 @@ export const styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         margin:w*0.01,
-        // shadowColor: "#000",
-        // shadowOffset: {
-        //     width: 0,
-        //     height: 2,
-        // },
-        // shadowOpacity: 0.23,
-        // shadowRadius: 2.62,
-        
-        // elevation: 4,
+        borderRadius:5
+
     },
     letter:{
         fontSize:normalize(15),
         fontWeight:'bold',
+    },
+    solutionContainer:{
+        flexDirection:'row',
+        marginVertical:w*0.1
+    },
+    solution:{
+        fontSize:normalize(18),
+        fontWeight:'bold',
+    },
+    back:{
+        width:w*0.14,
+        height:w*0.14,
+        borderRadius:w*0.7,
+        backgroundColor:'white',
+        alignSelf:'flex-start',
+        marginTop:h*0.05,
+        marginLeft:w*0.05,
+        justifyContent:'center',
+        alignItems:'center'
     }
 
 })

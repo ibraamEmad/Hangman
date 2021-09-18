@@ -1,14 +1,15 @@
-import { WORDS } from '../actions/types';
+import { WORD, SET_NUMBER_OF_LETTERS } from '../actions/types';
 
 
 const initialState = {
-    words:[]
+    word:'',
+    numberOfLetters:5,
   }
   
   export default (state = initialState , action) => {
-    // console.log(action.type)
     switch(action.type){
-      case WORDS :  return {...state,words:action.words};
+      case WORD :  return {...state,word:action.word};
+      case SET_NUMBER_OF_LETTERS :  return {...state,numberOfLetters:action.numberOfLetters};
     
       default: return state;
     }

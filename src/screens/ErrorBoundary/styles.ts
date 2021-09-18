@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import { normalize } from '../normalize'
+import colors from '@palette';
 
 const w = (Dimensions.get('window').width);
 const h = (Dimensions.get('window').height);
@@ -7,7 +8,7 @@ const h = (Dimensions.get('window').height);
 export const styles=StyleSheet.create({
     container : {
         flex: 1,
-        backgroundColor:'white',
+        backgroundColor:colors.primary,
         alignItems:'flex-start',
         width:w,
         paddingHorizontal:w*0.04,
@@ -16,12 +17,10 @@ export const styles=StyleSheet.create({
     title:{
         color:'#203152',
         fontSize:normalize(20),
-        fontFamily:'Anderson Grotesk Bold',
     },
     body:{
         color:'black',
         fontSize:normalize(11),
-        fontFamily:'Anderson Grotesk Bold',
         marginTop:w*0.03
     },
     btn:{
@@ -36,6 +35,5 @@ export const styles=StyleSheet.create({
     txt4:{
         color:'white',
         fontSize:normalize(16),
-        fontFamily:'Anderson Grotesk',
     },
 })

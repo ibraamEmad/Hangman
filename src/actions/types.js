@@ -1,1 +1,1 @@
-export const WORDS='WORDS';
+export const WORD='WORD';

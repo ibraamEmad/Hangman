@@ -5,12 +5,10 @@ import colors from '@palette';
 const w = (Dimensions.get('window').width);
 const h = (Dimensions.get('window').height);
 
-const pri=colors.primary
-
 export const styles=StyleSheet.create({
     container : {
         flex: 1,
-        backgroundColor:pri,
+        backgroundColor:colors.primary,
         alignItems:'center',
        },
     title:{
@@ -46,7 +44,7 @@ export const styles=StyleSheet.create({
         shadowRadius: 3.84,
 
         elevation: 5,
-        backgroundColor:pri,
+        backgroundColor:colors.primary,
         marginTop:h*0.08,
         flexDirection:'row',
         alignItems:'center'
