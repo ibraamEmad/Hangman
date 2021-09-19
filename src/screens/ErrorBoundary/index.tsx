@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect} from 'react-redux';
-import * as actions from '../../actions';
+
 import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 
 import { styles } from './styles';
@@ -9,7 +8,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 
 const w = (Dimensions.get('window').width);
-const h = (Dimensions.get('window').height)
 
 export default class index extends Component {
       state = {
@@ -20,21 +18,7 @@ export default class index extends Component {
         return { error: true };
       }
 
-      // componentDidCatch(error, errorInfo) {
-      //   fetch(API_URL + '/log/error', {
-      //     headers: {
-      //       'Accept': 'application/json',
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify({
-      //      errorInfo: errorInfo
-      //     }),
-      //     method: "POST"
-      //   })
-      //   .catch(e => {
-      //     console.log('failed to send errorInfo');
-      //   })
-      // }
+   
   
   render(){
    if(this.state.error) {

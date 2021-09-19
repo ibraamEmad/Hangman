@@ -1,34 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, {  } from 'react';
 import { connect} from 'react-redux';
 import * as actions from '../../actions';
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import {  Text, ScrollView } from 'react-native'
 import { styles } from './styles';
 import  Selector  from '@components/Selector'
+import BodyText from '@components/BodyText'
+import BenImage from '@components/BenImage'
+import Button from '@components/Button'
 
 function Start(props:any) {
 
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{alignItems:'center'}} showsVerticalScrollIndicator={false}>
         
         <Text style={styles.title}>Hangman</Text>
-        <Image source={{uri: 'runningben'}} resizeMode="contain" style={styles.img}/>
+        
+        <BenImage name= 'runningben'/>
 
-        <Text style={styles.body}>Start solving the mystery to save Ben from the bad people!</Text>
-
+        <BodyText text="Start solving the mystery to save Ben from the bad people!"/>
  
-        <TouchableOpacity style={styles.startButton} activeOpacity={0.8} onPress={()=>props.navigation.navigate('Game')}>
-        <Text style={styles.startText}>Start</Text>
-        </TouchableOpacity>
+        <Button nav={props.navigation} text="Start"/>
 
-        <Text style={styles.body}>Number of letters</Text>
+        <BodyText text="Number of letters"/>
+
         <Selector/>
 
-    </View>
+    </ScrollView>
   );
 }
 
-const mapStateToProps = (state:any) => ({
+const mapStateToProps = () => ({
 
 })
 

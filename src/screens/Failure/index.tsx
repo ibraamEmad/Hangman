@@ -1,34 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, {  } from 'react';
 import { connect} from 'react-redux';
 import * as actions from '../../actions';
-import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { View } from 'react-native'
 import { styles } from './styles';
+import Header from '@components/Header'
+import BodyText from '@components/BodyText'
+import BenImage from '@components/BenImage'
+import Button from '@components/Button'
 
 
-function Failure(props) {
+function Failure(props:any) {
 
 
   return (
     <View style={styles.container}>
         
-        <Text style={styles.title}>Hangman</Text>
-        <Image source={{uri: 'ben'}} resizeMode="contain" style={styles.img}/>
+        <Header title={'Ops!'} nav={props.navigation}/>
 
-        <Text style={styles.body}>Ops! You have failed Ben.</Text>
+        <BenImage name= 'ben'/>
 
-        <TouchableOpacity style={styles.startButton} activeOpacity={0.8} onPress={()=>props.navigation.reset({
-    index: 1,
-    routes: [
-      { name: 'Game' },
-    ]})}>
-        <Text style={styles.startText}>Play Again</Text>
+        <BodyText text="You have failed Ben."/>
 
-        </TouchableOpacity>
+        <Button nav={props.navigation} text="Play Again"/>
+
     </View>
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state:any) => ({
   word:state.app.word
 })
 

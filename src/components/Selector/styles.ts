@@ -19,6 +19,8 @@ export const styles=StyleSheet.create({
     number:{
         fontSize:normalize(18),
         fontWeight:'bold',
+        width:w*0.1,
+        textAlign:'center'
     },
     button:{
         padding:w*0.05

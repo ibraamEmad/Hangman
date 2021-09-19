@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,  } from 'react';
 import { connect} from 'react-redux';
 import * as actions from '../../actions';
 import { View, Text, TouchableOpacity,} from 'react-native'
@@ -13,14 +13,18 @@ function Selector(props:any) {
         setNumber(props.number)
     };
 
+    function updateNumber(number:number){
+      props.updateNumber(number)
+    }
+
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button}>
-        <Icon name={'minuscircleo'} size={normalize(25)} color={'black'} />
+        <TouchableOpacity style={styles.button} onPress={()=>updateNumber(number-1)} disabled={number==5?true:false} activeOpacity={0.8}>
+        <Icon name={'minuscircleo'} size={normalize(25)} color={number==5?'silver':'black'} />
         </TouchableOpacity>
         <Text style={styles.number}>{number}</Text>
-        <TouchableOpacity style={styles.button}>
-        <Icon name={'pluscircleo'} size={normalize(25)} color={'black'} />
+        <TouchableOpacity style={styles.button} onPress={()=>updateNumber(number+1)} disabled={number==9?true:false} activeOpacity={0.8}>
+        <Icon name={'pluscircleo'} size={normalize(25)} color={number==9?'silver':'black'} />
         </TouchableOpacity>
 
     </View>

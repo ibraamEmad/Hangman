@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect} from 'react-redux';
 import * as actions from '../../actions';
-import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, Animated } from 'react-native'
 import { styles } from './styles';
-import Icon from 'react-native-vector-icons/AntDesign';
-import { normalize } from '../normalize'
+
+import Header from '@components/Header'
+import LettersContainer from '@components/LettersContainer';
 
 
 function Game(props:any) {
@@ -12,14 +13,21 @@ function Game(props:any) {
     const [allowedAttempts, setAllowedAttempts] = useState(6);
     const [word, setWord] = useState('');
     const [solution, setSolution] = useState('');
+    const [number, setNumber] = useState(5);
+    const [showRed, setShowRed] = useState(false);
+    const animation = useRef(new Animated.Value(1)).current;
 
+
+    if (props.number !== number){
+        setNumber(props.number)
+    };
     if (props.word !== word){
       Load(props.word)
       setWord(props.word)
     };
 
   useEffect(() => {
-    props.getWord()
+    props.getWord(props.number.toString())
       return () => {
       }
   }, [])
@@ -48,6 +56,8 @@ function Game(props:any) {
         setSolution(newSolution)
         setSelectedLetters(x)
         if(!word.includes(letter)){
+          startAnimation()
+
           let newFailures=allowedAttempts-1
           setAllowedAttempts(newFailures)
           if(newFailures==0){
@@ -63,42 +73,52 @@ function Game(props:any) {
   }
 
 
+  function startAnimation(){
+    setShowRed(true)
+    Animated.sequence([
+      Animated.timing(animation, {
+          toValue: 1.2,                  
+          duration: 500,  
+          useNativeDriver :true
+      }),
+      Animated.timing(animation, {
+          toValue: 1,                  
+          duration: 500,  
+          useNativeDriver :true
+      })
+  ]).start(()=>{
+    setShowRed(false)
+  })
+  }
+
+
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{alignItems:'center'}}>
-        <TouchableOpacity style={styles.back} onPress={()=>props.navigation.reset({
-    index: 1,
-    routes: [
-      { name: 'Start' },
-    ]})}>
-           <Icon name={'arrowleft'} size={normalize(25)} color={'black'} />
-        </TouchableOpacity>
-        
-        <Image source={{uri: 'hangman'}} resizeMode="contain" style={styles.img}/>
+    <ScrollView style={styles.container} contentContainerStyle={{alignItems:'center'}} showsVerticalScrollIndicator={false}>
+
+      <Header title={'Hangman'} nav={props.navigation}/>
+
+       <View style={styles.imageContainer} >
+         {showRed?
+       <Animated.Image source={{uri: 'redhangman'}} resizeMode="contain" style={[styles.img,{transform: [{ scale: animation }]}]}/>
+       :
+      <Image source={{uri: 'hangman'}} resizeMode="contain" style={styles.img}/>
+         }
+      </View>
 
         <View style={styles.solutionContainer}>
         <Text style={styles.solution}>{solution}</Text>
         </View>
-
-        <View style={styles.lettersContainer}>
-       {Array.from(Array(26).keys()).map((item)=>
-       selectedLetters.includes((item+10).toString(36))?
-       <View style={styles.selectedCard} key={item+"1"}>
-        <Text style={styles.letter}>{(item+10).toString(36)}</Text>
-        </View>
-       :
-       <TouchableOpacity style={styles.card} onPress={()=>selectLetter((item+10).toString(36))} activeOpacity={1.0} key={item+"2"}>
-           <Text style={styles.letter}>{(item+10).toString(36)}</Text>
-        </TouchableOpacity>
-       )
-       }
-       </View>
+        
+        <LettersContainer selectedLetters={selectedLetters} selectLetter={selectLetter}/>
+       
     </ScrollView>
   );
 }
 
 const mapStateToProps = (state:any) => ({
-  word:state.app.word
+  word:state.app.word,
+  number:state.app.numberOfLetters
 
 })
 

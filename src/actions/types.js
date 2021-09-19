@@ -1,1 +1,2 @@
 export const WORD='WORD';
+export const SET_NUMBER_OF_LETTERS='SET_NUMBER_OF_LETTERS';

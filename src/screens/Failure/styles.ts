@@ -11,25 +11,7 @@ export const styles=StyleSheet.create({
         backgroundColor:colors.primary,
         alignItems:'center',
        },
-    title:{
-        color:'black',
-        fontSize:normalize(20),
-        fontWeight:'bold',
-        marginTop:w*0.2,
-        marginBottom:w*0.1,
-    },
-    body:{
-        color:'black',
-        fontSize:normalize(18),
-        width:w*0.9,
-        textAlign:'center',
-        marginTop:w*0.1,
-        
-    },
-    img:{
-        width:w*0.6,
-        height:w*0.6,
-    },
+    
     startButton:{
         paddingVertical:w*0.04,
         paddingHorizontal:w*0.2,

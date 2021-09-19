@@ -1,35 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, {  } from 'react';
 import { connect} from 'react-redux';
 import * as actions from '../../actions';
-import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { View } from 'react-native'
 import { styles } from './styles';
-import Icon from 'react-native-vector-icons/AntDesign';
-import { normalize } from '../normalize'
+import Header from '@components/Header'
+import BodyText from '@components/BodyText'
+import BenImage from '@components/BenImage'
+import Button from '@components/Button'
 
-function Success(props) {
+function Success(props:any) {
   
 
   return (
     <View style={styles.container}>
-        
-        <Text style={styles.title}>Congratulations!</Text>
-        <Image source={{uri: 'happyben'}} resizeMode="contain" style={styles.img}/>
+      
+        <Header title={'Congratulations!'} nav={props.navigation}/>
 
-        <Text style={styles.body}>Thanks to you, Ben have been released!</Text>
+        <BenImage name= 'happyben'/>
 
-        <TouchableOpacity style={styles.startButton} activeOpacity={0.8} onPress={()=>props.navigation.reset({
-    index: 1,
-    routes: [
-      { name: 'Game' },
-    ]})}>
-        <Text style={styles.startText}>Play Again</Text>
+        <BodyText text="Thanks to you, Ben have been released!"/>
 
-        </TouchableOpacity>
+        <Button nav={props.navigation} text="Play Again"/>
+      
     </View>
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state:any) => ({
   word:state.app.word
 })
 
